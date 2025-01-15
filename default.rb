@@ -22,6 +22,10 @@ gem 'sidekiq-cron'
 gem 'sidekiq-failures'
 gem 'sidekiq-reset_statistics'
 
+puts ENV.fetch('LOCATION')
+
+exit
+
 gem_group :development do
   gem 'bcrypt_pbkdf'
   gem 'ed25519'
@@ -169,7 +173,7 @@ generators = <<~RUBY
     generate.assets false
     generate.helper false
     generate.test_framework :test_unit, fixture: false
-    generatr.jbuilder false
+    generate.jbuilder false
   end
 RUBY
 
