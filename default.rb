@@ -5,7 +5,10 @@ gem 'autoprefixer-rails'
 gem 'semver2', github: 'haf/semver'
 gem 'slim-rails'
 gem 'sassc-rails'
-gem 'env-tweaks', github: 'yivo/env-tweaks', branch: 'dependabot/bundler/activesupport-7.0.4.1'
+
+# It is not compatible with Rails 8.0
+# gem 'env-tweaks', github: 'yivo/env-tweaks', branch: 'dependabot/bundler/activesupport-7.0.4.1'
+#
 gem 'simple_form'
 gem 'strip_attributes'
 gem 'draper'
@@ -21,10 +24,6 @@ gem 'sidekiq'
 gem 'sidekiq-cron'
 gem 'sidekiq-failures'
 gem 'sidekiq-reset_statistics'
-
-puts ENV.fetch('LOCATION')
-
-exit
 
 gem_group :development do
   gem 'bcrypt_pbkdf'
@@ -54,9 +53,9 @@ gem_group :development do
   gem 'capistrano-systemd-multiservice', github: 'brandymint/capistrano-systemd-multiservice', require: false
 end
 
-
 gem_group :development, :test do
-  gem 'brakeman', require: false
+  # Now it is included in rails Gemfile by default
+  # gem 'brakeman', require: false
   gem 'bundler-audit', require: false
   gem 'pry-byebug'
   gem 'pry-rails'
@@ -181,7 +180,7 @@ environment generators
 
 # Dotenv
 ########################################
-run "touch '.envrc'"
+# run "touch '.envrc'"
 
 
 # Clone files
@@ -192,3 +191,6 @@ run 'git clone git@github.com:dapi/rails_templates.git ./tmp/rails_templates'
 run 'cp -vr ./tmp/rails_templates/app/* ./app/'
 run 'cp -vr ./tmp/rails_templates/config/* ./config/'
 run 'cp -vr ./tmp/rails_templates/lib/* ./lib/'
+
+puts '----'
+puts ENV.fetch('LOCATION')
